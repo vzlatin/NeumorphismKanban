@@ -1,0 +1,10 @@
+<div class="column" cdkDropList [cdkDropListData]="column.tasks" (cdkDropListDropped)="drop($event)">
+    <div class="title-area">
+        <h5 class="title">{{ column.title }}</h5>
+    </div>
+    <div class="task-container">
+        @for (task of column.tasks; track task) {
+            <app-task [task]="task" cdkDrag></app-task>
+          }
+    </div>
+</div>

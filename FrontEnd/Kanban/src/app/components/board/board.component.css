@@ -1,0 +1,164 @@
+.board-container {
+    display: flex;
+    flex-direction: column;
+    margin-left: 40px;
+    margin-right: 40px;
+}
+
+.board-heading {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #CCCC;
+    margin-bottom: 40px;
+    padding: 0;
+  }
+
+.columns-and-task-controls {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.new-task-container fa-icon {
+    margin-right: 5px;
+}
+
+.new-task-container fa-icon:hover {
+    cursor: pointer;
+}
+
+.new-task {
+    margin-right: 25px;
+    height: 30px;
+    width: 150px;
+    border-radius: 20px;
+    transition: .2s ease-in-out;
+    box-shadow: 5px 5px 10px #c8c9cc,
+        -5px -5px 10px #ffffff;
+    border: none;
+    color: #1A45EE;
+    font-family: Montserrat-Light, sans-serif;
+    font-size: 15px;
+}
+
+.new-task:hover {
+    cursor: pointer;
+    box-shadow: -2px -2px 6px rgba(255, 255, 255, .6),
+        -2px -2px 4px rgba(255, 255, 255, .4),
+        2px 2px 2px rgba(255, 255, 255, .05),
+        2px 2px 4px rgba(0, 0, 0, .1);
+}
+
+.new-task:active {
+    box-shadow: inset -2px -2px 6px rgba(255, 255, 255, .7),
+        inset -2px -2px 4px rgba(255, 255, 255, .5),
+        inset 2px 2px 2px rgba(255, 255, 255, .075),
+        inset 2px 2px 4px rgba(0, 0, 0, .15);
+}
+
+.new-column {
+    height: 30px;
+    width: 150px;
+    border: none;
+    border-radius: 20px;
+    background-color: #1A45EE;
+    box-shadow: 0 0 20px 4px rgba(26, 69, 238, 0.5);
+    color: #f0f0f0;
+    font-size: 15px;
+    font-family: Montserrat-Light, sans-serif;
+}
+
+.new-column:hover {
+    cursor: pointer;
+    background-color: #2553fd;
+    box-shadow: 0 0 3px 1px rgba(47, 86, 246, 0.73);
+}
+
+.board-title {
+    font-family: Montserrat-SemiBold, sans-serif;
+    font-size: 34px;
+    color: #5c5f64;
+}
+
+.board {
+    display: flex;
+    flex-direction: row;
+    /* overflow-x: scroll; */
+}
+
+
+@media screen and (max-width: 1300px) {
+    .new-column {
+        height: 50px;
+        width: 200px;
+        margin-right: 100px;
+        border: none;
+        border-radius: 20px;
+        background-color: #5171e8;
+        box-shadow: 0 0 3px 1px rgba(81, 114, 232, 0.73);
+        color: #f0f0f0;
+        font-family: Montserrat-Regular, sans-serif;
+        font-size: 15px;
+    }
+}
+
+
+@media screen and (max-width: 1200px) {
+    .new-column {
+        height: 50px;
+        width: 200px;
+        margin-right: 0;
+        border: none;
+        border-radius: 20px;
+        background-color: #5171e8;
+        box-shadow: 0 0 3px 1px rgba(81, 114, 232, 0.73);
+        color: #f0f0f0;
+        font-family: Montserrat-Regular, sans-serif;
+        font-size: 15px;
+    }
+}
+
+
+/*======================== DRAG AND DROP ANIMATIONS ========================*/
+.cdk-drag-placeholder {
+    opacity: 0;
+}
+
+.cdk-drag-animating {
+    transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.content.cdk-drop-list-dragging .app-task:not(.cdk-drag-placeholder) {
+    transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+/*======================== SCROLL BAR PARAMETERS ========================*/
+/* width */
+/* ::-webkit-scrollbar {
+    width: 5px;
+    height: 8px;
+} */
+
+/* Track */
+/* ::-webkit-scrollbar-track {
+    background: #ebecf0;
+} */
+
+/* Handle */
+/* ::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 10px;
+} */
+
+/* Handle on hover */
+/* ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+} */

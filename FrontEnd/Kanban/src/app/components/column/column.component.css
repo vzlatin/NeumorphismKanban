@@ -1,0 +1,23 @@
+.column {
+    min-width: 355px;
+    border: 1px solid #000000;
+    /* height: 300px; */
+    text-align: center;
+}
+
+.task-container {
+    display: inline-block;
+}
+
+.title-area {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.title {
+    font-family: Montserrat-Regular, sans-serif;
+    font-size: 20px;
+    color: #5c5f64;
+    margin-top: 0;
+}

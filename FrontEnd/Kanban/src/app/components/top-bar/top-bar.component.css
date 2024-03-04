@@ -1,0 +1,203 @@
+.top-bar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.search-box {
+    display: flex;
+    align-items: center;
+    min-width: 315px;
+    margin-left: 30px;
+}
+
+.search-icon {
+    color: #757575;
+    margin-top: 5px;
+    margin-right: 10px;
+}
+
+.search-box input {
+    border: none;
+    outline: none;
+    background: none;
+    width: 100%;
+    font-size: 20px;
+    font-family: Montserrat-Regular, sans-serif;
+    letter-spacing: 2px;
+    margin-top: 3px;
+    color: #757575;
+}
+
+.user-image {
+    display: block;
+    color: #757575;
+    margin-right: 10px;
+    margin-top: 3px;
+}
+
+.profile-image {
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+}
+
+.user-pills {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    height: 70px;
+}
+
+.user-pills-container {
+    display: flex;
+    width: 1300px;
+    align-items: center;
+    /* overflow-x: auto; */
+    ;
+}
+
+.logged-in-user {
+    display: flex;
+    flex-direction: row;
+    float: right;
+    align-items: center;
+    /* margin-left: auto;
+    margin-right: 0; */
+    font-family: Montserrat-Regular, sans-serif;
+}
+
+.current-user-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.current-user-text p {
+    margin: 0;
+}
+
+.logout {
+    margin-top: 3px;
+    font-family: Montserrat-Regular, sans-serif;
+}
+
+.logout:hover {
+    cursor: pointer;
+    color: rgb(155, 12, 40);
+}
+
+.team-members {
+    white-space: nowrap;
+    color: #5c5f64;
+    font-family: Montserrat-Regular, sans-serif;
+    font-size: 20px;
+    display: inline-block;
+    margin-right: 30px;
+}
+
+.user_pill {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 25px;
+    /* box-shadow: 12px 12px 26px #c3c4c7,
+      -12px -12px 26px #ffffff; */
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    padding: 0 12px;
+    margin-right: 10px;
+    min-width: 200px;
+    white-space: normal;
+}
+
+.user_pill:hover {
+    cursor: pointer;
+    /* background: linear-gradient(145deg, #d4d4d8, #fbfdff);
+    box-shadow: 12px 12px 26px #c3c4c7,
+      -12px -12px 26px #ffffff; */
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.user_pill p {
+    font-family: Montserrat-Light, sans-serif;
+}
+
+.is-active {
+    background: linear-gradient(145deg, #d4d4d8, #fbfdff);
+    /* box-shadow: 12px 12px 26px #c3c4c7,
+      -12px -12px 26px #ffffff; */
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    outline: 1px solid #00b336;
+}
+
+.horizontal-line {
+    margin-top: 25px;
+    border: 1px solid #ccc;
+}
+
+
+@media screen and (max-width: 1920px) {
+
+    .user-pills {
+        display: flex;
+        width: 1000px;
+        align-items: center;
+    }
+}
+
+@media screen and (max-width: 1800px) {
+    .user-pills {
+        display: flex;
+        width: 800px;
+        align-items: center;
+    }
+}
+
+@media screen and (max-width: 1570px) {
+    .user-pills {
+        display: flex;
+        width: 600px;
+        align-items: center;
+    }
+}
+
+@media screen and (max-width: 1375px) {
+    .user-pills {
+        display: flex;
+        width: 400px;
+        align-items: center;
+    }
+}
+
+@media screen and (max-width: 1180px) {
+    .user-pills {
+        display: flex;
+        width: 200px;
+        align-items: center;
+    }
+}
+
+/*======================== SCROLL BAR PARAMETERS ========================*/
+/* width */
+/* ::-webkit-scrollbar {
+    width: 5px;
+    height: 4px;
+  }
+   */
+/* Track */
+/* ::-webkit-scrollbar-track {
+    background: #ebecf0;
+  }
+   */
+/* Handle */
+/* ::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 10px;
+  } */
+
+/* Handle on hover */
+/* ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  } */

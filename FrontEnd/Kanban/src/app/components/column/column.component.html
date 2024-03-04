@@ -1,10 +1,8 @@
-<div class="column" cdkDropList [cdkDropListData]="column.tasks" (cdkDropListDropped)="drop($event)">
+<div class="column example-list" cdkDropList [cdkDropListData]="column.tasks" (cdkDropListDropped)="drop($event)">
     <div class="title-area">
         <h5 class="title">{{ column.title }}</h5>
     </div>
-    <div class="task-container">
-        @for (task of column.tasks; track task) {
-            <app-task [task]="task" cdkDrag></app-task>
-          }
+    <div class="task-container" cdkDrag *ngFor="let task of column.tasks">
+        <app-task class="example-box" [task]="task"></app-task>
     </div>
 </div>

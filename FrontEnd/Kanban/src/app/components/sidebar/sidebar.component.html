@@ -1,0 +1,11 @@
+<div class="sidebar-container">
+    <div class="menu">
+        <div class="menu-item-container" *ngFor="let board of boards">
+            <a class="menu-item-title">{{ board }}</a>
+        </div>
+
+        <div class="new-board" (click)="createNewBoard()">
+            <a class="menu-item-title">{{ '+ New Board' }}</a>
+        </div>
+    </div>
+</div>

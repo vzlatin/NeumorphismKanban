@@ -1,3 +1,26 @@
+body {
+    background-color: #DDDEE6;
+}
+
+
+.cdk-drag-preview {
+    box-sizing: border-box;
+    
+}
+
+.cdk-drag-placeholder {
+    opacity: 0;
+}
+
+.cdk-drag-animating {
+    transition: transform 450ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.example-list.cdk-drop-list-dragging .example-box:not(.cdk-drag-placeholder) {
+    transition: transform 450ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+
 /* ========= Font Faces ========= */
 @font-face {
     font-family: 'Montserrat-ExtraLight';

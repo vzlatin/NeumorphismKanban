@@ -23,11 +23,11 @@ func main() {
 func setupApi() {
 
 	manager := ws.NewManager()
-
+	
+	http.HandleFunc("/ws", manager.ServeWS)
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		message := []byte("Sup!")
 		w.Write(message)
 	})
-	http.HandleFunc("/ws", manager.ServeWS)
 
 }

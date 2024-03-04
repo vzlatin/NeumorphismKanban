@@ -47,7 +47,7 @@ func (c *Client) readMessages() {
 			log.Printf("Error handling the message: %s", err)
 		}
 
-		if err := c.manager.route(data); err != nil {
+		if err := c.manager.route(data, c); err != nil {
 			log.Printf("Error handling the message: %s", err)
 		}
 	}

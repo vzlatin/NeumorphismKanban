@@ -8,10 +8,11 @@ import (
 	"time"
 
 	"github.com/vzlatin/NeumorphismKanban/events"
-	"github.com/vzlatin/NeumorphismKanban/dbhandlers"
 
 	"github.com/gorilla/websocket"
 )
+
+type EventHandler func(event events.Event, c *Client) error
 
 var (
 	websocketUpgrader = websocket.Upgrader{
@@ -23,14 +24,14 @@ var (
 
 type Manager struct {
 	clients  ClientList
-	handlers map[int]events.EventHandler
+	handlers map[int]EventHandler
 	sync.RWMutex
 }
 
 func NewManager() *Manager {
 	m := &Manager{
 		clients:  make(ClientList),
-		handlers: make(map[int]events.EventHandler),
+		handlers: make(map[int]EventHandler),
 	}
 	m.setupEventHandlers()
 	return m
@@ -71,13 +72,13 @@ func (m *Manager) removeClient(c *Client) {
 }
 
 func (m *Manager) setupEventHandlers() {
-	m.handlers[events.NewBoard] = dbhandlers.CreateNewBoard
-	m.handlers[events.NewColumn] = dbhandlers.CreateNewColumn
+	m.handlers[events.NewBoard] = CreateNewBoard
+	m.handlers[events.NewColumn] = CreateNewColumn
 }
 
-func (m *Manager) route(event events.Event) error {
+func (m *Manager) route(event events.Event, c *Client) error {
 	if handler, ok := m.handlers[event.Type]; ok {
-		if err := handler(event); err != nil {
+		if err := handler(event, c); err != nil {
 			return err
 		}
 		return nil

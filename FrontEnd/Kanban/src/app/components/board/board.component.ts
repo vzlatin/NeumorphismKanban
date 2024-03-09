@@ -1,59 +1,100 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CdkDropListGroup } from '@angular/cdk/drag-drop';
 import { ColumnComponent } from '../column/column.component';
 import { NgFor } from '@angular/common';
 import { Column } from '../../interfaces/column';
 import { WebSocketService } from '../../services/web-socket.service';
+import { ActivatedRoute } from '@angular/router';
+import { DialogModule, Dialog } from '@angular/cdk/dialog';
+import { ColumnDialogComponent } from '../column-dialog/column-dialog.component';
+import { Observable } from 'rxjs';
 import { MessageType } from '../../enums/new-message-type';
-
-
-
-
+import { MessagePayload } from '../../interfaces/messagePayload';
+import { HttpService } from '../../services/http.service';
 
 @Component({
     selector: 'app-board',
     standalone: true,
-    imports: [CdkDropListGroup, ColumnComponent, NgFor],
+    imports: [CdkDropListGroup, ColumnComponent, NgFor, DialogModule],
     templateUrl: './board.component.html',
     styleUrl: './board.component.css'
 })
-export class BoardComponent {
+export class BoardComponent implements OnInit{
 
-    constructor(private ws: WebSocketService) { }
+    columns: Column[] | undefined;
+    selectedBoardId: string = "";
+    
+    constructor(private ws: WebSocketService,
+        private route: ActivatedRoute,
+        private http: HttpService,
+        public dialog: Dialog) {}
+        
 
-    SendColumn(): void {
-        const column = {
-            title: "New Board",
-            boardId: "some uuid"
-        }
-        this.ws.sendMessage(column, MessageType.NewColumn);
+    createColumn(): void {
+
+        const dialogRef = this.dialog.open(ColumnDialogComponent, {
+            minWidth: '300px',
+        });
+        
+        // This unsubscribes automatically.
+        (dialogRef.closed as Observable<string>).subscribe((columnName: string) => {
+            // this.column.title = columnName;
+            // this.column.boardId = this.selectedBoardId;
+            // console.log(this.column);
+            // this.ws.sendMessage(this.column, MessageType.NewColumn);
+        });
     }
 
-    columns: Column[] = [
-        {
-            title: "Backlog", tasks: [
-                { title: "Task: 1" },
-                { title: "Task: 2" },
-                { title: "Task: 3" },
-                { title: "Task: 4" }
-            ]
-        },
-        {
-            title: "Testing", tasks: [
-                { title: "Task: 3" },
-                { title: "Task: 4" },
-                { title: "Task: 5" },
-                { title: "Task: 6" }
-            ]
-        },
-        {
-            title: "Done", tasks: [
-                { title: "Task: 7" },
-                { title: "Task: 8" },
-                { title: "Task: 9" },
-                { title: "Task: 10" }
-            ]
-        }
-    ]
+    createTask(): void {
+        
+    }
+
+    ngOnInit(): void {
+        // Load the columns with the tasks when the component is initialized;
+        // No need to load everything in the master component
+        // Some boards may never be accessed.
+        // ONLY LOAD THE REQUIRED COLUMNS, NOT EVERYTHING.
+        this.route.paramMap.subscribe(params => {
+            const boardId = params.get("boardID");
+            if (boardId !== null) {
+                this.selectedBoardId = boardId;
+            } // Handle the empty url params [Especially on startup]
+
+           // Get the columns for a specific board. 
+            this.http.getBoardIdColumns("/getBoardData", JSON.stringify(this.selectedBoardId)).subscribe((columns: Column[]) => {
+                this.columns = columns
+                console.log(columns);
+            })
+        });
+
+        this.ws.subject.subscribe((column: MessagePayload) => {
+            // console.log("Logging from the Board Component: ", column);
+            // const columnPayload = column.payload as Column;
+            // this.columns?.push(columnPayload);
+        })
+    }
+
+    // columns: Column[] = [
+    //     {
+    //         title: "Backlog",
+    //         boardId: "fad36ddf-3c10-42be-89fa-33636a968fc5"
+    //     },
+    //     {
+    //         title: "Testing",
+    //         boardId: "fad36ddf-3c10-42be-89fa-33636a968fc5"
+    //     },
+    //     {
+    //         title: "Done",
+    //         boardId: "fad36ddf-3c10-42be-89fa-33636a968fc5"
+    //     },
+    //     {
+    //         title: "Done",
+    //         boardId: "4a72812a-fd91-42c7-b460-9d238775ddbb"
+    //     },
+    //     {
+    //         title: "Done",
+    //         boardId: "4a72812a-fd91-42c7-b460-9d238775ddbb"
+    //     }
+    // ]
 
 }

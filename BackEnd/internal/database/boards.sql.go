@@ -28,3 +28,30 @@ func (q *Queries) CreateBoard(ctx context.Context, arg CreateBoardParams) (Board
 	err := row.Scan(&i.ID, &i.Title)
 	return i, err
 }
+
+const getAllBoards = `-- name: GetAllBoards :many
+select id, title from boards
+`
+
+func (q *Queries) GetAllBoards(ctx context.Context) ([]Board, error) {
+	rows, err := q.db.QueryContext(ctx, getAllBoards)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	var items []Board
+	for rows.Next() {
+		var i Board
+		if err := rows.Scan(&i.ID, &i.Title); err != nil {
+			return nil, err
+		}
+		items = append(items, i)
+	}
+	if err := rows.Close(); err != nil {
+		return nil, err
+	}
+	if err := rows.Err(); err != nil {
+		return nil, err
+	}
+	return items, nil
+}

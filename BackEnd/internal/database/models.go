@@ -5,10 +5,45 @@
 package database
 
 import (
+	"database/sql"
+	"time"
+
 	"github.com/google/uuid"
 )
 
 type Board struct {
 	ID    uuid.UUID
 	Title string
+}
+
+type Column struct {
+	ID      uuid.UUID
+	Boardid uuid.UUID
+	Title   string
+}
+
+type Task struct {
+	ID              uuid.UUID
+	Columnid        uuid.UUID
+	Userid          uuid.UUID
+	TaskNumber      string
+	Title           string
+	TaskDescription string
+	Created         time.Time
+	Completed       sql.NullTime
+	Due             time.Time
+	CreatedAt       time.Time
+	UpdatedAt       time.Time
+	TaskPriority    int32
+	TaskStatus      int32
+	Estimation      string
+}
+
+type User struct {
+	ID           uuid.UUID
+	FirstName    string
+	LastName     string
+	Email        string
+	Password     string
+	ProfileImage []byte
 }

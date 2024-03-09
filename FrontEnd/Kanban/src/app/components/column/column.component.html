@@ -1,8 +1,12 @@
-<div class="column example-list" cdkDropList [cdkDropListData]="column.tasks" (cdkDropListDropped)="drop($event)">
+<div class="column-container" cdkDropList [cdkDropListData]="column?.tasks" (cdkDropListDropped)="drop($event)"> 
     <div class="title-area">
-        <h5 class="title">{{ column.title }}</h5>
+        <h5 class="title">{{ column?.column_title }}</h5>
     </div>
-    <div class="task-container" cdkDrag *ngFor="let task of column.tasks">
-        <app-task class="example-box" [task]="task"></app-task>
+    <div [ngClass]="column !== undefined && column.tasks.length > 0 ? 'column' : 'column-no-tasks'">
+    <!-- <div class="column"> -->
+        <div class="task-container" cdkDrag *ngFor="let task of column?.tasks">
+            <app-task [task]="task"></app-task>
+        </div>
     </div>
 </div>
+

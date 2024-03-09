@@ -1,11 +1,10 @@
 .task {
-    margin-top: 15px;
+    margin: 10px auto;
     width: 240px;
     height: 125px;
     border-radius: 15px;
     box-shadow: 5px 5px 10px #c3c4c7,
         -5px -5px 10px #f6f6f6;
-    /* background-color: red; */
 }
 
 .task:hover {

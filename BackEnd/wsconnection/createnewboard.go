@@ -21,13 +21,25 @@ func CreateNewBoard(event events.Event, c *Client) error {
 	}
 
 	apiConfig, ctx := GetApiConfig()
-	apiConfig.DB.CreateBoard(ctx, database.CreateBoardParams{
+	newboard, err := apiConfig.DB.CreateBoard(ctx, database.CreateBoardParams{
 		ID:    uuid.New(), // Think about this one
 		Title: board.Title,
 	})
+	if err != nil {
+		return fmt.Errorf("error creating a new board: %s", err)
+	}
+
+	var outgoingMessage events.Event
+	outgoingMessagePayload, err := json.Marshal(newboard)
+	if err != nil {
+		return fmt.Errorf("error creating an outgoing board message: %s", err)
+	}
+
+	outgoingMessage.Type = 0
+	outgoingMessage.Payload = outgoingMessagePayload
 
 	for client := range c.manager.clients {
-		client.bottleneck <- event
+		client.bottleneck <- outgoingMessage
 	}
 
 	return nil

@@ -1,7 +1,7 @@
 <div class="sidebar-container">
     <div class="menu">
-        <div class="menu-item-container" *ngFor="let board of boards">
-            <a class="menu-item-title">{{ board.title }}</a>
+        <div class="menu-item-container" *ngFor="let board of boards" (click)="selectBoard(board?.ID)">
+            <a class="menu-item-title">{{ board.Title }}</a>
         </div>
 
         <div class="new-board" (click)="openDialog()">

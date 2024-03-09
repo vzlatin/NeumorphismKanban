@@ -10,6 +10,6 @@ import { Task } from '../../interfaces/task';
 })
 export class TaskComponent {
 
-    @Input() task: Task = {}
+    @Input() task: Task | undefined;
 
 }

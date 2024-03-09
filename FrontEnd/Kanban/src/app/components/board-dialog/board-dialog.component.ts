@@ -21,7 +21,8 @@ export class BoardDialogComponent {
 
     createBoard(): void {
         const newBoard: Board = {
-            title: this.boardName
+
+            Title: this.boardName
         }
         this.ws.sendMessage(newBoard, MessageType.NewBoard);
         this.dialogRef.close();

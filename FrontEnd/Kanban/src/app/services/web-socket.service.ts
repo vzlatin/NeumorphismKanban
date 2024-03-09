@@ -28,5 +28,4 @@ export class WebSocketService {
         };
         this.subject.next(messageblob);
     }
-
-}
+}   

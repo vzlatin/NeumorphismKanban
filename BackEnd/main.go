@@ -6,6 +6,7 @@ import (
 	"net/http"
 	"os"
 
+	"github.com/vzlatin/NeumorphismKanban/httphandlers"
 	ws "github.com/vzlatin/NeumorphismKanban/wsconnection"
 
 	"github.com/joho/godotenv"
@@ -23,11 +24,9 @@ func main() {
 func setupApi() {
 
 	manager := ws.NewManager()
-	
 	http.HandleFunc("/ws", manager.ServeWS)
-	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		message := []byte("Sup!")
-		w.Write(message)
-	})
+	http.HandleFunc("/getBoardData", httphandlers.GetBoardIdData)
 
+	// will probably be removed
+	http.HandleFunc("/getBoards", httphandlers.GetAllBoards) 
 }

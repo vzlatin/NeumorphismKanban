@@ -2,19 +2,19 @@ import { Component, Input } from '@angular/core';
 import { TaskComponent } from '../task/task.component';
 import { CdkDragDrop, CdkDrag, CdkDropList, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { Column } from '../../interfaces/column';
-import { NgFor } from '@angular/common';
+import { NgClass, NgFor } from '@angular/common';
 import { Task } from '../../interfaces/task';
 import { WebSocketService } from '../../services/web-socket.service';
 
 @Component({
     selector: 'app-column',
     standalone: true,
-    imports: [CdkDropList, CdkDrag, TaskComponent, NgFor],
+    imports: [CdkDropList, CdkDrag, TaskComponent, NgFor, NgClass],
     templateUrl: './column.component.html',
     styleUrl: './column.component.css'
 })
 export class ColumnComponent {
-    @Input() column: Column = {};
+    @Input() column: Column | undefined;
 
     constructor(private ws: WebSocketService) {}
 
